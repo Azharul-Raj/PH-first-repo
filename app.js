@@ -20,20 +20,34 @@ const saveStorage = (product, quantity) => {
     const cartStringify = JSON.stringify(cart)
     localStorage.setItem('cart',cartStringify)
 }
+// display storage value
+const displayStoredValue = () => {
+    const cart = getCartFromStorage()
+    for (let product in cart) {
+        const cartQyt = cart[product]
+        display(product,cartQyt)
+    }
+}
+// display product 
+const display = (name,value) => {
+    // productContainer.textContent = ``
+    const productContainer = document.getElementById('show-product')
+    const tr = document.createElement('tr')
+    tr.innerHTML = `
+    <th></th>
+     <th>${name}</th>
+     <th>${value}</th>
+    `
+    productContainer.appendChild(tr)
+}
 
 document.getElementById('add-btn').addEventListener('click', () => {
     const productName = getInputText('name-field')
     const productQuantity = getInputText('quantity-field')
     console.log(productName, productQuantity)
     // product showing container
-    const productContainer = document.getElementById('show-product')
-    const tr = document.createElement('tr')
-    tr.innerHTML = `
-    <th></th>
-     <th>${productName}</th>
-     <th>${productQuantity}</th>
-    `
-    productContainer.appendChild(tr)
+    display(productName,productQuantity)
     // localStorage.setItem(productName,productQuantity)
-    saveStorage(productName,productQuantity)
+    saveStorage(productName, productQuantity)
 })
+displayStoredValue()

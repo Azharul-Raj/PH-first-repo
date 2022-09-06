@@ -7,4 +7,7 @@ const obj = {
     
 }
 obj['rol'] = 20
-console.log(obj)
+for (let value in obj) {
+    console.log(value)
+}
+// console.log(obj)
