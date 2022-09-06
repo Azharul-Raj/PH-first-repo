@@ -2,3 +2,7 @@ h2{
     background-color: aqua;
     color: black;
 }
+.clk:focus{
+    background-color: red;
+    color: black;
+}
